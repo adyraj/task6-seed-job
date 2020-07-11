@@ -49,7 +49,7 @@ if [ $status==200 ]
 then
 exit 0
 else 
-sudo python3.6 /mail.py
+sudo python3.6 /root/mail.py
 exit 1
 fi''')
     }
