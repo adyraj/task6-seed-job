@@ -28,7 +28,7 @@ job('job2'){
                                       then
                                       kubectl create -f /deploy.yml
                                       podname=$(kubectl get pods -o=jsonpath='{.items[0].metadata.name}')
-                                      kubectl cp /code/*.php $podname:/var/www/html/
+                                      kubectl cp /myweb/*.php $podname:/var/www/html/
                                       kubectl expose deploy webdeploy --port=80 --type=NodePort
                                       fi
 				   ''')
@@ -62,7 +62,7 @@ job('job4'){
                     steps{
                                shell('''cp -rvf * /myweb/
 podname=$(kubectl get pods -o=jsonpath='{.items[0].metadata.name}')
-kubectl cp /code/* $podname:/var/www/html/
+kubectl cp /myweb/* $podname:/var/www/html/
 ''')
     }
 }
