@@ -64,7 +64,7 @@ job('job4'){
                                shell('''cp -rvf * /myweb/
 podname=$(kubectl get pods -o=jsonpath='{.items[0].metadata.name}')
 kubectl cp /code/* $podname:/var/www/html/
-)
+''')
     }
 }
 
