@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: weblogpvc
+spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+        requests:
+            storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: webpvc
+spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+        requests:
+            storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: webdeploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+       env: web
+  template:
+    metadata:
+     name: myweb
+     labels:
+       env: web
+    spec: 
+      containers:
+        - name: webos
+          image: vimal13/apache-webserver-php
+          volumeMounts:
+            - name: logs
+              mountPath: /etc/httpd/logs/
+          volumeMounts:
+            - name: webdata
+              mountPath: /var/www/html  
+      volumes:
+      - name: logs
+        persistentVolumeClaim:
+            claimName: weblogpvc
+      - name: webdata
+        persistentVolumeClaim:
+            claimName: 	webpvc
