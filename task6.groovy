@@ -67,7 +67,7 @@ kubectl cp /myweb/* $podname:/var/www/html/
     }
 }
 
-buildPipelineView('build-pipeline') {
+buildPipelineView('buildpipeline') {
     filterBuildQueue()
     filterExecutors()
     title('Project tsk6 CI Pipeline')
