@@ -4,7 +4,7 @@ job("job1"){
                                github('adyraj/phpweb', 'master')
                        }
               triggers {
-                                  upstream('seed', 'SUCCESS')
+                                  upstream('seed_job', 'SUCCESS')
                             }
               steps{
                              shell(''' if ls / | grep myweb 
