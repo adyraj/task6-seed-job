@@ -30,7 +30,7 @@ job('job2'){
                                       podname=$(kubectl get pods -o=jsonpath='{.items[0].metadata.name}')
                                       sleep 60
                                       kubectl cp /code/*.php $podname:/var/www/html/
-                                      kubectl expose deploy deploy-task3 --port=80 --type=NodePort
+                                      kubectl expose deploy webdeploy --port=80 --type=NodePort
                                       fi
 				   ''')
      }
